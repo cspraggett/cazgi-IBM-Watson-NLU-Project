@@ -43,7 +43,8 @@ app.get("/url/emotion", (req,res) => {
     const nlu = getNLUInstance();
     nlu.analyze(analyzeParams)
         .then(analysisResults => {
-            console.log(JSON.stringify(analysisResults, null, 2));
+            // console.log(JSON.stringify(analysisResults, null, 2));
+            return analysisResults.result.emotion.document;
         })
         .catch(err => {
             console.log('error:', err);
@@ -63,8 +64,8 @@ app.get("/url/sentiment", (req,res) => {
     const nlu = getNLUInstance()
     nlu.analyze(analyzeParams)
         .then(analysisResults => {
-            console.log(JSON.stringify(analysisResults, null, 2));
-            // return JSON.stringify(analysisResults, null, 2);
+            // console.log(JSON.stringify(analysisResults, null, 2));
+            return analysisResults.result.sentiment.document.label;
          })
         .catch(err => {
             console.log('error:', err);
@@ -86,7 +87,8 @@ app.get("/text/emotion", (req,res) => {
     const nlu = getNLUInstance();
     nlu.analyze(analyzeParams)
         .then(analysisResults => {
-            console.log(JSON.stringify(analysisResults, null, 2));
+            // console.log(JSON.stringify(analysisResults, null, 2));
+            return analysisResults.result.emotion.document.emotion;
         })
         .catch(err => {
             console.log('error:', err);
@@ -106,8 +108,8 @@ app.get("/text/sentiment", (req,res) => {
     const nlu = getNLUInstance()
     nlu.analyze(analyzeParams)
         .then(analysisResults => {
-            console.log(JSON.stringify(analysisResults, null, 2));
-            // return JSON.stringify(analysisResults, null, 2);
+            console.log(analysisResults.result.sentiment.document.label);
+            JSON.stringify(analysisResults, null, 2);
          })
         .catch(err => {
             console.log('error:', err);
